@@ -378,4 +378,7 @@
       securityContext:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.podAdditionalSettings }}
+        {{- toYaml . | nindent 6 }}
+      {{- end }}
 {{ end -}}

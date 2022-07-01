@@ -415,3 +415,15 @@ tests:
       - contains:
           path: spec.template.spec.containers[0].args
           content: "--entrypoints.websecure.http3.advertisedPort=443"
+  - it: should have specified podAdditionalSettings
+    set:
+      podAdditionalSettings:
+        key1: value1
+        key2: value2
+    asserts:
+      - equal:
+          path: spec.template.spec.key1
+          value: value1
+      - equal:
+          path: spec.template.spec.key2
+          value: value2

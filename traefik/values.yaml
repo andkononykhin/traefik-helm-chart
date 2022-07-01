@@ -541,3 +541,6 @@ containerAdditionalSettings: {}
 
 podSecurityContext:
   fsGroup: 65532
+
+# additional settings for the pod
+podAdditionalSettings: {}
