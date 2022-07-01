@@ -536,5 +536,8 @@ securityContext:
   runAsNonRoot: true
   runAsUser: 65532
 
+# additional settings for the main container
+containerAdditionalSettings: {}
+
 podSecurityContext:
   fsGroup: 65532

@@ -325,6 +325,9 @@
         envFrom:
           {{- toYaml . | nindent 10 }}
         {{- end }}
+        {{- with .Values.containerAdditionalSettings }}
+          {{- toYaml . | nindent 8 }}
+        {{- end }}
       {{- if .Values.deployment.additionalContainers }}
         {{- toYaml .Values.deployment.additionalContainers | nindent 6 }}
       {{- end }}

@@ -42,6 +42,18 @@ tests:
       - equal:
           path: spec.template.spec.containers[0].securityContext.runAsUser
           value: 1000
+  - it: should have specified containerAdditionalSettings
+    set:
+      containerAdditionalSettings:
+        key1: value1
+        key2: value2
+    asserts:
+      - equal:
+          path: spec.template.spec.containers[0].key1
+          value: value1
+      - equal:
+          path: spec.template.spec.containers[0].key2
+          value: value2
   - it: should have pvc with specified value
     set:
       persistence:
