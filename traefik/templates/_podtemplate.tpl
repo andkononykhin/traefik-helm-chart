@@ -30,6 +30,10 @@
       {{- with .Values.deployment.dnsPolicy }}
       dnsPolicy: {{ . }}
       {{- end }}
+      {{- if .Values.deployment.extraHostAliases }}
+      hostAliases:
+        {{- toYaml .Values.deployment.extraHostAliases | nindent 8 }}
+      {{- end }}
       {{- with .Values.deployment.initContainers }}
       initContainers:
       {{- toYaml . | nindent 6 }}

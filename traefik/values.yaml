@@ -63,6 +63,8 @@ deployment:
   # Additional imagePullSecrets
   imagePullSecrets: []
     # - name: myRegistryKeySecretName
+  # additional host alias to add to /etc/hosts
+  extraHostAliases: []
 
 # Pod disruption budget
 podDisruptionBudget:

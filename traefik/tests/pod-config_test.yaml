@@ -149,6 +149,34 @@ tests:
       - equal:
           path: spec.template.spec.imagePullSecrets[1].name
           value: myOtherRegistryKeySecretName
+  - it: should have no hostAliases
+    asserts:
+      - isEmpty:
+          path: spec.template.spec.hostAliases
+  - it: should have multiple hostAliases with specified values
+    set:
+      deployment:
+        extraHostAliases:
+          - ip: ip1
+            hostnames:
+            - hostname11
+            - hostname12
+          - ip: ip2
+            hostnames:
+            - hostname21
+            - hostname22
+    asserts:
+      - equal:
+          path: spec.template.spec.hostAliases
+          value:
+          - ip: ip1
+            hostnames:
+            - hostname11
+            - hostname12
+          - ip: ip2
+            hostnames:
+            - hostname21
+            - hostname22
   - it: should have shareProcessNamespace enabled
     set:
       deployment:
