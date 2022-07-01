@@ -315,6 +315,11 @@ ports:
     # forwardedHeaders:
     #   insecure: false
     #   trustedIPs: []
+    # Configure client address replacement as per Proxy Protocol
+    # proxyProtocol:
+    #   enabled: false
+    #   insecure: false
+    #   trustedIPs: []
   web:
     port: 8000
     # hostPort: 8000

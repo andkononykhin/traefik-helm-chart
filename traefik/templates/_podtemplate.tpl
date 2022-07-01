@@ -248,6 +248,16 @@
           - "--entrypoints.{{ $entrypoint }}.forwardedHeaders.insecure"
           {{- end }}
           {{- end }}
+          {{- if $config.proxyProtocol }}
+          {{- if $config.proxyProtocol.enabled }}
+          {{- if $config.proxyProtocol.trustedIPs }}
+          - "--entrypoints.{{ $entrypoint }}.proxyProtocol.trustedIPs={{ join "," $config.proxyProtocol.trustedIPs }}"
+          {{- end }}
+          {{- if $config.proxyProtocol.insecure }}
+          - "--entrypoints.{{ $entrypoint }}.proxyProtocol.insecure"
+          {{- end }}
+          {{- end }}
+          {{- end }}
           {{- end }}
           {{- with .Values.logs }}
           {{- if .general.format }}

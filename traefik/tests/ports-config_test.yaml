@@ -156,3 +156,20 @@ tests:
       - contains:
           path: spec.template.spec.containers[0].args
           content: "--entrypoints.someport.forwardedHeaders.insecure"
+  - it: should have specified proxyProtocol values
+    set:
+      ports:
+        someport:
+          proxyProtocol:
+            enabled: true
+            insecure: true
+            trustedIPs:
+              - ip1
+              - ip2
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--entrypoints.someport.proxyProtocol.trustedIPs=ip1,ip2"
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--entrypoints.someport.proxyProtocol.insecure"
