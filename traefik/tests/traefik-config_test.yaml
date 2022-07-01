@@ -167,6 +167,55 @@ tests:
       - contains:
           path: spec.template.spec.containers[0].args
           content: "--providers.kubernetesingress.ingressClass=foo"
+  - it: should have no consul catalog enabled by default
+    asserts:
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog"
+  - it: should not have consul catalog specific settings when disabled
+    set:
+      providers:
+        consulCatalog:
+          enabled: false
+          endpoint:
+            address: some-address
+            token: some-token
+          exposedByDefault: true
+    asserts:
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog"
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.exposedByDefault=true"
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.endpoint.address=some-address"
+      - notContains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.endpoint.token=some-token"
+  - it: should have consul catalog specific settings when enabled
+    set:
+      providers:
+        consulCatalog:
+          enabled: true
+          endpoint:
+            address: some-address
+            token: some-token
+          exposedByDefault: true
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog"
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.exposedByDefault=true"
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.endpoint.address=some-address"
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--providers.consulcatalog.endpoint.token=some-token"
 
   - it: should have a plugin storage if the experimental feature is enabled
     set:

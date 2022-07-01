@@ -191,6 +191,18 @@
           - "--providers.kubernetesingress.ingressClass={{ .Values.providers.kubernetesIngress.ingressClass }}"
           {{- end }}
           {{- end }}
+          {{- if .Values.providers.consulCatalog }}
+          {{- if .Values.providers.consulCatalog.enabled }}
+          - "--providers.consulcatalog"
+          - "--providers.consulcatalog.exposedByDefault={{ default false .Values.providers.consulCatalog.exposedByDefault }}"
+          {{- if .Values.providers.consulCatalog.endpoint.address }}
+          - "--providers.consulcatalog.endpoint.address={{ .Values.providers.consulCatalog.endpoint.address }}"
+          {{- end }}
+          {{- if .Values.providers.consulCatalog.endpoint.token }}
+          - "--providers.consulcatalog.endpoint.token={{ .Values.providers.consulCatalog.endpoint.token }}"
+          {{- end }}
+          {{- end }}
+          {{- end }}
           {{- if .Values.experimental.kubernetesGateway.enabled }}
           - "--providers.kubernetesgateway"
           - "--experimental.kubernetesgateway"

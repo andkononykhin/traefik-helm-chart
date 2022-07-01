@@ -162,6 +162,16 @@ providers:
       # By default this Traefik service
       # pathOverride: ""
 
+    # consulCatalog:
+    #   # Enable ConsulCatalog backend with default settings
+    #   enabled: false
+    #   endpoint:
+    #     # The address of the Consul server
+    #     address: "127.0.0.1:8500"
+    #     # ACL token which overrides the agent's default token
+    #     token: ""
+    #   # Expose containers by default
+    #   exposedByDefault: false
 #
 # Add volumes to the traefik pod. The volume name will be passed to tpl.
 # This can be used to mount a cert pair or a configmap that holds a config.toml file.
