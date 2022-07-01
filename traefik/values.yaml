@@ -311,6 +311,10 @@ ports:
     exposedPort: 9000
     # The port protocol (TCP/UDP)
     protocol: TCP
+    # Trust the forwarded headers information
+    # forwardedHeaders:
+    #   insecure: false
+    #   trustedIPs: []
   web:
     port: 8000
     # hostPort: 8000

@@ -140,3 +140,19 @@ tests:
       - contains:
           path: spec.template.spec.containers[0].args
           content: "--entrypoints.udp.address=:51/udp"
+  - it: should have specified forwardedHeaders values
+    set:
+      ports:
+        someport:
+          forwardedHeaders:
+            insecure: true
+            trustedIPs:
+              - ip1
+              - ip2
+    asserts:
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--entrypoints.someport.forwardedHeaders.trustedIPs=ip1,ip2"
+      - contains:
+          path: spec.template.spec.containers[0].args
+          content: "--entrypoints.someport.forwardedHeaders.insecure"

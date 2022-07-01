@@ -240,6 +240,14 @@
           {{- end }}
           {{- end }}
           {{- end }}
+          {{- if $config.forwardedHeaders }}
+          {{- if $config.forwardedHeaders.trustedIPs }}
+          - "--entrypoints.{{ $entrypoint }}.forwardedHeaders.trustedIPs={{ join "," $config.forwardedHeaders.trustedIPs }}"
+          {{- end }}
+          {{- if $config.forwardedHeaders.insecure }}
+          - "--entrypoints.{{ $entrypoint }}.forwardedHeaders.insecure"
+          {{- end }}
+          {{- end }}
           {{- end }}
           {{- with .Values.logs }}
           {{- if .general.format }}
